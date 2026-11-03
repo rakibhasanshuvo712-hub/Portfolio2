@@ -66,9 +66,10 @@ export type Project = {
   live?: string;
   source: string;
   featured?: boolean;
+  pinned?: boolean;
 };
 
-export const projects: Project[] = [
+const projectList: Project[] = [
   {
     id: "bazar-dor",
     index: "01",
@@ -91,6 +92,7 @@ export const projects: Project[] = [
     tags: ["Next.js", "React", "TypeScript", "Tailwind", "Vercel"],
     live: "https://fit-log-sandy.vercel.app/",
     source: "https://github.com/rakibhasanshuvo712-hub/fit-log",
+    pinned: true,
     featured: true,
   },
   {
@@ -102,6 +104,7 @@ export const projects: Project[] = [
       "Interactive React app for exploring technologies and building a personal stack with add, remove and manage actions.",
     tags: ["React", "TypeScript", "Tailwind", "Toastify"],
     source: "https://github.com/rakibhasanshuvo712-hub/Assignment-5",
+    pinned: true,
   },
   {
     id: "borrowhub",
@@ -132,8 +135,16 @@ export const projects: Project[] = [
       "Responsive landing page focused on clean, user-friendly interface using only HTML and CSS.",
     tags: ["HTML", "CSS", "Responsive UI"],
     source: "https://github.com/rakibhasanshuvo712-hub/ph-a1",
+    pinned: true,
   },
 ];
+
+const pinnedRepositoryOrder = ["stack-builder", "ph-a1", "fit-log"];
+export const projects: Project[] = [...projectList].sort((a, b) => {
+  const aOrder = a.pinned ? pinnedRepositoryOrder.indexOf(a.id) : pinnedRepositoryOrder.length;
+  const bOrder = b.pinned ? pinnedRepositoryOrder.indexOf(b.id) : pinnedRepositoryOrder.length;
+  return aOrder - bOrder;
+});
 
 export const journey = [
   {
